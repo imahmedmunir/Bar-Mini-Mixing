@@ -1120,10 +1120,89 @@
             font-size: 0.85rem;
         }
 
+        /* ===== HAMBURGER MENU ===== */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            gap: 6px;
+            z-index: 1000;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--accent-light);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            background: rgba(15, 15, 15, 0.98);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-subtle);
+            z-index: 999;
+            flex-direction: column;
+            padding: 1.5rem 0;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .mobile-menu a:hover {
+            background: rgba(217, 119, 6, 0.1);
+            border-left-color: var(--accent-warm);
+            color: var(--accent-light);
+        }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             nav {
                 padding: 0.8rem 1.5rem;
+            }
+
+            nav .container {
+                flex-wrap: wrap;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
             }
 
             .section {
@@ -1175,15 +1254,28 @@
     <!-- NAVIGATION -->
     <nav>
         <div class="container">
-            <div class="logo"> Bar Mini Mixing</div>
+            <div class="logo">🍸 Bar Mini Mixing</div>
             <ul class="nav-links">
                 <li><a href="#experience">L'Atmosfera</a></li>
                 <li><a href="#menu">Cosa Offriamo</a></li>
                 <li><a href="#reviews">Recensioni</a></li>
                 <li><a href="#contact">Contatti</a></li>
             </ul>
+            <button class="hamburger" id="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="#experience">L'Atmosfera</a>
+        <a href="#menu">Cosa Offriamo</a>
+        <a href="#reviews">Recensioni</a>
+        <a href="#contact">Contatti</a>
+    </div>
 
     <!-- HERO SECTION -->
     <section class="hero">
@@ -1559,6 +1651,23 @@
     </a>
 
     <script>
+        // Hamburger Menu Toggle
+        const hamburger = document.getElementById('hamburger-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+
         // FAQ Accordion
         document.querySelectorAll('.faq-question').forEach(question => {
             question.addEventListener('click', () => {
