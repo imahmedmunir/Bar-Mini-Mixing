@@ -1,0 +1,1631 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bar Mini Mixing - Genova | Aperitivo Autentico</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #0f0f0f;
+            --secondary-dark: #1a1a1a;
+            --tertiary-dark: #2d2d2d;
+            --accent-warm: #d97706;
+            --accent-light: #f59e0b;
+            --accent-gold: #fbbf24;
+            --text-primary: #f8f8f8;
+            --text-secondary: #b8b8b8;
+            --text-muted: #888888;
+            --border-subtle: #2a2a2a;
+            --glow-accent: rgba(217, 119, 6, 0.15);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #1a1a2e 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 15, 15, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-subtle);
+            z-index: 999;
+            padding: 1rem 2rem;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, var(--accent-light), var(--accent-warm));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-warm);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-light);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ===== UTILITY ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 7rem 2rem;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            margin-top: 60px;
+            min-height: calc(100vh - 60px);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        .hero-background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('bar5.jpg') center/cover no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            opacity: 1;
+            z-index: 0;
+            animation: heroZoom 8s ease-in-out;
+        }
+
+        @keyframes heroZoom {
+            0% {
+                transform: scale(1.05);
+                opacity: 0;
+            }
+            30% {
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            animation: fadeInDown 1s ease 0.3s both;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 8vw, 3.8rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, var(--accent-light), var(--accent-warm));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+            animation: fadeInUp 1s ease 0.5s both;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.7s both;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-warm), var(--accent-light));
+            color: #000;
+            box-shadow: 0 8px 24px rgba(217, 119, 6, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 36px rgba(217, 119, 6, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent-light);
+            border: 2px solid var(--accent-warm);
+            box-shadow: 0 0 20px rgba(217, 119, 6, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(217, 119, 6, 0.1);
+            border-color: var(--accent-light);
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(217, 119, 6, 0.3);
+        }
+
+        /* ===== EXPERIENCE SECTION ===== */
+        .experience {
+            background: var(--secondary-dark);
+            position: relative;
+            z-index: 2;
+        }
+
+        .experience::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-warm), transparent);
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .section-title .highlight {
+            background: linear-gradient(135deg, var(--accent-light), var(--accent-warm));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 700px;
+        }
+
+        .experience-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 800px;
+        }
+
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .exp-card {
+            background: linear-gradient(135deg, var(--tertiary-dark) 0%, rgba(45, 45, 45, 0.5) 100%);
+            border: 1px solid var(--border-subtle);
+            padding: 2.5rem;
+            border-radius: 12px;
+            backdrop-filter: blur(5px);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease backwards;
+        }
+
+        .exp-card:nth-child(1) { animation-delay: 0.2s; }
+        .exp-card:nth-child(2) { animation-delay: 0.3s; }
+        .exp-card:nth-child(3) { animation-delay: 0.4s; }
+
+        .exp-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 0% 0%, rgba(217, 119, 6, 0.1) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .exp-card:hover {
+            background: linear-gradient(135deg, rgba(45, 45, 45, 0.8) 0%, rgba(45, 45, 45, 0.3) 100%);
+            border-color: var(--accent-warm);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(217, 119, 6, 0.15);
+        }
+
+        .exp-card:hover::before {
+            opacity: 1;
+        }
+
+        .exp-card-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--accent-light);
+        }
+
+        .exp-card-text {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* ===== FOOD & DRINKS SECTION ===== */
+        .menu {
+            background: linear-gradient(180deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+            position: relative;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .menu-card {
+            background: var(--tertiary-dark);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+            animation: fadeInUp 0.8s ease backwards;
+            position: relative;
+        }
+
+        .menu-card:nth-child(1) { animation-delay: 0.2s; }
+        .menu-card:nth-child(2) { animation-delay: 0.3s; }
+        .menu-card:nth-child(3) { animation-delay: 0.4s; }
+
+        .menu-card:hover {
+            transform: translateY(-12px);
+            border-color: var(--accent-warm);
+            box-shadow: 0 30px 60px rgba(217, 119, 6, 0.25);
+        }
+
+        .menu-image {
+            width: 100%;
+            height: 240px;
+            background: linear-gradient(135deg, var(--accent-warm) 0%, var(--accent-light) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+            color: rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-image::before {
+            content: attr(data-label);
+            position: absolute;
+            font-size: 0.8rem;
+            color: rgba(0, 0, 0, 0.15);
+            font-weight: 600;
+            bottom: 10px;
+            right: 10px;
+        }
+
+        .menu-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .menu-placeholder {
+            font-size: 0.75rem;
+            color: rgba(0, 0, 0, 0.2);
+            text-align: center;
+            padding-top: 80px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .menu-content {
+            padding: 2rem;
+        }
+
+        .menu-card h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--accent-light);
+        }
+
+        .menu-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .menu-note {
+            font-size: 0.85rem;
+            color: var(--accent-warm);
+            font-weight: 500;
+        }
+
+        /* ===== VIVID EXPERIENCE GALLERY SECTION ===== */
+        .gallery {
+            background: linear-gradient(180deg, var(--secondary-dark) 0%, var(--primary-dark) 100%);
+            position: relative;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            aspect-ratio: 1;
+            cursor: pointer;
+            animation: fadeInUp 0.8s ease backwards;
+            box-shadow: 0 10px 30px rgba(217, 119, 6, 0.15);
+        }
+
+        .gallery-item:nth-child(1) { animation-delay: 0.1s; }
+        .gallery-item:nth-child(2) { animation-delay: 0.2s; }
+        .gallery-item:nth-child(3) { animation-delay: 0.3s; }
+        .gallery-item:nth-child(4) { animation-delay: 0.4s; }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(217, 119, 6, 0) 0%, rgba(217, 119, 6, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 100%);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 2rem;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay p {
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: center;
+            line-height: 1.5;
+            margin: 0;
+            animation: fadeInUp 0.4s ease;
+        }
+
+        /* ===== EXTERIOR/TRUST SECTION ===== */
+        .exterior {
+            background: var(--secondary-dark);
+            position: relative;
+        }
+
+        .exterior-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .exterior-image {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(217, 119, 6, 0.2);
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .exterior-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .exterior-image:hover img {
+            transform: scale(1.03);
+        }
+
+        .exterior-content {
+            animation: fadeInUp 0.8s ease 0.3s both;
+        }
+
+        .exterior-content h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--accent-light);
+            line-height: 1.3;
+        }
+
+        .exterior-content p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .exterior-stat {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            background: linear-gradient(135deg, var(--tertiary-dark) 0%, rgba(45, 45, 45, 0.5) 100%);
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-warm);
+            margin-bottom: 1rem;
+        }
+
+        .exterior-stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent-warm);
+        }
+
+        .exterior-stat-text {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .exterior-wrapper {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .reviews {
+            background: var(--secondary-dark);
+        }
+
+        .rating-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(251, 191, 36, 0.1);
+            border: 1px solid var(--accent-gold);
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            color: var(--accent-gold);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .review-card {
+            background: linear-gradient(135deg, var(--tertiary-dark) 0%, rgba(45, 45, 45, 0.5) 100%);
+            border: 1px solid var(--border-subtle);
+            padding: 2rem;
+            border-radius: 12px;
+            transition: all 0.4s ease;
+            animation: fadeInUp 0.8s ease backwards;
+            backdrop-filter: blur(5px);
+        }
+
+        .review-card:nth-child(1) { animation-delay: 0.2s; }
+        .review-card:nth-child(2) { animation-delay: 0.3s; }
+        .review-card:nth-child(3) { animation-delay: 0.4s; }
+        .review-card:nth-child(4) { animation-delay: 0.5s; }
+
+        .review-card:hover {
+            background: linear-gradient(135deg, rgba(45, 45, 45, 0.8) 0%, rgba(45, 45, 45, 0.3) 100%);
+            border-color: var(--accent-warm);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(217, 119, 6, 0.15);
+        }
+
+        .stars {
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+            display: flex;
+            gap: 0.2rem;
+        }
+
+        .star {
+            filter: drop-shadow(0 0 2px rgba(251, 191, 36, 0.4));
+        }
+
+        .review-text {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .review-author {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        /* ===== URGENCY SECTION ===== */
+        .urgency {
+            margin: 5rem 2rem;
+            padding: 4rem;
+            background: linear-gradient(135deg, var(--accent-warm) 0%, var(--accent-light) 100%);
+            border-radius: 16px;
+            text-align: center;
+            color: #000;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(217, 119, 6, 0.3);
+        }
+
+        .urgency::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 0, 0, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .urgency-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .urgency h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+
+        .urgency p {
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        /* ===== LOCATION SECTION ===== */
+        .location {
+            background: var(--secondary-dark);
+        }
+
+        .location-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .location-info {
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .location-info h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--accent-light);
+        }
+
+        .location-details {
+            background: linear-gradient(135deg, var(--tertiary-dark) 0%, rgba(45, 45, 45, 0.5) 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-warm);
+            margin-bottom: 2rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .location-details p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        .location-details strong {
+            color: var(--accent-light);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .location-info > p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .map-container {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(217, 119, 6, 0.2);
+            height: 450px;
+            animation: fadeInUp 0.8s ease 0.3s both;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        @media (max-width: 768px) {
+            .location-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .map-container {
+                height: 320px;
+            }
+        }
+
+        /* ===== CONTACT SECTION ===== */
+        .contact {
+            background: var(--primary-dark);
+            text-align: center;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, var(--tertiary-dark) 0%, rgba(45, 45, 45, 0.5) 100%);
+            border: 1px solid var(--border-subtle);
+            padding: 2rem;
+            border-radius: 12px;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .contact-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+            color: var(--accent-light);
+            font-weight: 700;
+        }
+
+        .contact-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .contact-card:hover {
+            border-color: var(--accent-warm);
+            background: linear-gradient(135deg, rgba(45, 45, 45, 0.8) 0%, rgba(45, 45, 45, 0.3) 100%);
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px rgba(217, 119, 6, 0.2);
+        }
+
+        /* ===== FAQ SECTION ===== */
+        .faq {
+            background: var(--secondary-dark);
+        }
+
+        .faq-container {
+            max-width: 750px;
+            margin: 3rem auto 0;
+        }
+
+        .faq-item {
+            background: var(--tertiary-dark);
+            border: 1px solid var(--border-subtle);
+            margin-bottom: 1.2rem;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--accent-warm);
+            box-shadow: 0 10px 30px rgba(217, 119, 6, 0.1);
+        }
+
+        .faq-question {
+            padding: 1.75rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--tertiary-dark);
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .faq-question:hover {
+            background: rgba(45, 45, 45, 0.8);
+            padding-left: 2.25rem;
+        }
+
+        .faq-question h4 {
+            font-size: 1.05rem;
+            color: var(--text-primary);
+            margin: 0;
+            font-weight: 600;
+            text-align: left;
+        }
+
+        .faq-toggle {
+            color: var(--accent-warm);
+            font-size: 1.6rem;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+            margin-left: 1rem;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 2rem;
+            background: rgba(15, 15, 15, 0.5);
+            border-top: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== FLOATING WHATSAPP BUTTON ===== */
+        :root {
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .floating-whatsapp {
+            position: fixed;
+            right: 14px;
+            bottom: 18px;
+            z-index: 50;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: 1px solid rgba(31, 94, 67, 0.18);
+            background: linear-gradient(145deg, #31b986, #1f9e6f);
+            color: #fff;
+            box-shadow: 0 12px 28px rgba(34, 122, 87, 0.33);
+            display: grid;
+            place-items: center;
+            transition: transform var(--transition), box-shadow var(--transition), filter var(--transition);
+            text-decoration: none;
+            animation: whatsappPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes whatsappPulse {
+            0%, 100% {
+                box-shadow: 0 12px 28px rgba(34, 122, 87, 0.33);
+            }
+            50% {
+                box-shadow: 0 12px 40px rgba(34, 122, 87, 0.5);
+            }
+        }
+
+        .floating-whatsapp:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 16px 34px rgba(34, 122, 87, 0.4);
+            filter: saturate(1.06);
+            animation: none;
+        }
+
+        .floating-whatsapp svg {
+            width: 26px;
+            height: 26px;
+        }
+
+        .floating-whatsapp::after {
+            content: "Prenota ora, i tavoli finiscono";
+            position: absolute;
+            right: 80px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: #fff;
+            padding: 0.6rem 1rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            border: 1px solid rgba(49, 185, 134, 0.4);
+        }
+
+        .floating-whatsapp:hover::after {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .floating-whatsapp {
+                width: 52px;
+                height: 52px;
+                right: 12px;
+                bottom: 16px;
+            }
+
+            .floating-whatsapp svg {
+                width: 24px;
+                height: 24px;
+            }
+
+            .floating-whatsapp::after {
+                display: none;
+            }
+        }
+
+        /* ===== GOOGLE REVIEWS BUTTON ===== */
+        .google-reviews-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #4285f4;
+            color: #fff;
+            padding: 0.8rem 1.8rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(66, 133, 244, 0.3);
+            margin-top: 1rem;
+        }
+
+        .google-reviews-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(66, 133, 244, 0.4);
+        }
+
+        .google-reviews-link svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--tertiary-dark);
+            border-top: 1px solid var(--border-subtle);
+            padding: 3rem 2rem 1.5rem;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-col h4 {
+            color: var(--accent-light);
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .footer-col p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .footer-col a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col a:hover {
+            color: var(--accent-warm);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            list-style: none;
+        }
+
+        .footer-divider {
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 2rem;
+            margin-top: 2rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            nav {
+                padding: 0.8rem 1.5rem;
+            }
+
+            .section {
+                padding: 4rem 1rem;
+            }
+
+            .hero {
+                margin-top: 50px;
+                min-height: auto;
+                padding: 2rem 1rem;
+            }
+
+            .cta-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .menu-grid,
+            .reviews-grid,
+            .experience-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .urgency {
+                margin: 3rem 1rem;
+                padding: 2.5rem 1.5rem;
+            }
+
+            .urgency h2 {
+                font-size: 1.8rem;
+            }
+
+            .location-wrapper {
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="container">
+            <div class="logo"> Bar Mini Mixing</div>
+            <ul class="nav-links">
+                <li><a href="#experience">L'Atmosfera</a></li>
+                <li><a href="#menu">Cosa Offriamo</a></li>
+                <li><a href="#reviews">Recensioni</a></li>
+                <li><a href="#contact">Contatti</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-background-image"></div>
+        <div class="hero-content">
+            <h1>Un Posto Semplice<br><span class="highlight">Ma Quando Te Ne Vai, Vuoi Tornare</span></h1>
+            <p>Qui non ci sono effetti speciali. Solo gente vera, aperitivo che riempi, e quella sensazione che cercavi di Genova autentica.</p>
+            <div class="cta-group">
+                <a href="https://wa.me/393471827933" target="_blank" class="btn btn-primary">💬 Scrivici su WhatsApp</a>
+                <a href="#contact" class="btn btn-secondary">Vieni Stasera</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE SECTION -->
+    <section class="experience section" id="experience">
+        <div class="container">
+            <h2 class="section-title">L'Atmosfera <span class="highlight">Vera</span></h2>
+            <p class="section-subtitle">Dove gli genovesi si incontrano ancora, e i turisti scoprono finalmente l'autentico</p>
+            
+            <p class="experience-text">
+                Entra da Bar Mini Mixing e smetti di cercare. Non troverai quello che aspetti da un "locale carino" — troverai qualcosa di raro: gente che conosce la tua faccia dal primo giorno, aperitivo che riempi davvero, cocktail fatti con cura. Se sei uno di quei turisti in cerca di Genova autentica, sei nel posto giusto. Se sei un genovese che conosce il bar da anni, già sai che qui è casa.
+            </p>
+
+            <div class="experience-grid">
+                <div class="exp-card">
+                    <h3 class="exp-card-title">🍹 Aperitivo Generoso</h3>
+                    <p class="exp-card-text">Piatti ricchi di stuzzichini, bruschette, sandwich e specialità — incluso con ogni drink. Non sono bocconcini, sono cibo vero.</p>
+                </div>
+                <div class="exp-card">
+                    <h3 class="exp-card-title">🧡 Gente Vera</h3>
+                    <p class="exp-card-text">Il nostro staff ti tratta come un amico, non come un numero. Torni non solo per il drink, ma per la sensazione di stare a casa.</p>
+                </div>
+                <div class="exp-card">
+                    <h3 class="exp-card-title">💸 Prezzi Onesti</h3>
+                    <p class="exp-card-text">€1–10 per drink con aperitivo completo. Qualità senza rincari. Questo è il nostro impegno.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOD & DRINKS SECTION -->
+    <section class="menu section" id="menu">
+        <div class="container">
+            <h2 class="section-title">Cosa Troverai <span class="highlight">da Noi</span></h2>
+            <p class="section-subtitle">Drink e aperitivo che non dimenticherai</p>
+
+            <div class="menu-grid">
+                <div class="menu-card">
+                    <div class="menu-image" data-label="APERITIVO AUTENTICO">
+                        <img src="bar1.jpg" alt="Aperitivo Autentico - Bruschette, sandwich, olive, formaggi" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px 12px 0 0;" />
+                    </div>
+                    <div class="menu-content">
+                        <h3>Aperitivo all'Italiana</h3>
+                        <p>Non è un piatto piccolino. Bruschette, sandwich, olive, formaggi, stuzzichini freschi — tutto quello che è vero da mangiare. Incluso con ogni drink. Se hai fame, qui non rimani deluso.</p>
+                        <div class="menu-note">✓ Generoso e senza scherzi</div>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <div class="menu-image" data-label="DRINK SIGNATURE">
+                        <img src="bar4.jpg" alt="Drink Signature - Spritz, cocktail artigianali, Aperitivo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px 12px 0 0;" />
+                    </div>
+                    <div class="menu-content">
+                        <h3>Drink Signature</h3>
+                        <p>Ordini uno spritz, e sai esattamente cosa arriva. Cocktail artigianali che non sono esperimenti strani. Fatto bene, veloce, e sempre — sempre — con stile genovese.</p>
+                        <div class="menu-note">✓ Non sono play-back</div>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <div class="menu-image" data-label="VINI E ANALCOLICI">
+                        <img src="bar3.jpg" alt="Vini Liguri, bibite, caffè - Qualità e scelta" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px 12px 0 0;" />
+                    </div>
+                    <div class="menu-content">
+                        <h3>Vini al Bicchiere e Non Solo</h3>
+                        <p>Vini liguri scelti, bibite fredde, caffè fatto bene. Non è "una scelta" — è la scelta giusta per quel momento della giornata. Niente è casuale, qui.</p>
+                        <div class="menu-note">✓ Senza compromessi</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIVI L'APERITIVO GALLERY SECTION -->
+    <section class="gallery section">
+        <div class="container">
+            <h2 class="section-title">Vivi <span class="highlight">l'Aperitivo</span></h2>
+            <p class="section-subtitle">Quello che troverai quando entri da noi — non è un template, è la realtà</p>
+
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="bar1.jpg" alt="Tavolo con aperitivo generoso e drink" />
+                    <div class="gallery-overlay">
+                        <p>Questo è quello che arriva con un drink</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="bar2.jpg" alt="Dettaglio food - bruschette e stuzzichini freschi" />
+                    <div class="gallery-overlay">
+                        <p>Non è scenografia — si mangia davvero</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="bar4.jpg" alt="Drink signature - fatto con cura e stile" />
+                    <div class="gallery-overlay">
+                        <p>Qui non ordini solo da bere</p>
+                    </div>
+                </div>
+            </div>
+
+            <p style="text-align: center; font-size: 1.3rem; color: var(--accent-light); margin-top: 3rem; font-weight: 600; font-style: italic;">Arrivi per un drink. Rimani per tutto il resto.</p>
+        </div>
+    </section>
+
+    <!-- REVIEWS SECTION -->
+    <section class="reviews section" id="reviews">
+        <div class="container">
+            <h2 class="section-title">Quello che Dicono <span class="highlight">i Clienti</span></h2>
+            <div class="rating-badge">
+                <span>⭐ 4.6 stelle</span>
+                <span>•</span>
+                <span>58 recensioni</span>
+            </div>
+
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="stars">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="review-text">"L'atmosfera è vera, la gente è amichevole, i drink sono buoni e l'aperitivo è incredibilmente generoso. Questa è l'esperienza autentica genovese che cercavo."</p>
+                    <p class="review-author">Marco T.</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="stars">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="review-text">"Perfetto per l'aperitivo! Ambiente amichevole, ottimi snack, prezzi giusti. Tornerò sicuramente. Se cercate un vero bar genovese, questo è il posto."</p>
+                    <p class="review-author">Giulia R.</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="stars">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="review-text">"Aperitivo molto generoso e prezzi onesti. Il proprietario ti ricorda dal primo giorno. È un posto dove senti di essere importante, non un semplice cliente."</p>
+                    <p class="review-author">Luca M.</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="stars">
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                        <span class="star">★</span>
+                    </div>
+                    <p class="review-text">"Sono arrivata come turista in cerca di qualcosa di autentico. Ho trovato amici. Il miglior bar di Genova. Tornerò di sicuro, e porterò anche gli amici!"</p>
+                    <p class="review-author">Sophie D.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="https://www.google.com/search?q=Bar+Mini+Mixing+Genova" target="_blank" rel="noopener noreferrer" class="google-reviews-link">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                    </svg>
+                    Guarda cosa dicono davvero (Google)
+                </a>
+            </div>
+
+    <!-- EXTERIOR/TRUST SECTION -->
+    <section class="exterior section">
+        <div class="container">
+            <h2 class="section-title">Facile da Riconoscere,<br><span class="highlight">Impossibile da Dimenticare</span></h2>
+
+            <div class="exterior-wrapper">
+                <div class="exterior-image">
+                    <img src="main.jpg" alt="Insegna esterna Bar Mini Mixing a Genova" />
+                </div>
+                <div class="exterior-content">
+                    <h3>Qui Da Anni</h3>
+                    <p>Quella insegna la riconoscono tutti nel quartiere. Non è il primo anno, non è un esperimento. Bar Mini Mixing è il posto dove i genovesi sanno di trovare qualità, onestà, e una pausa vera.</p>
+                    <p style="color: var(--text-primary); margin-bottom: 1.5rem;">Ordini uno spritz — e arriva da mangiare davvero. Nessun compromesso, nessuna finzione, solo il fatto che qualcuno sa fare le cose bene.</p>
+
+                    <div class="exterior-stat">
+                        <div class="exterior-stat-number">4.6★</div>
+                        <div class="exterior-stat-text">58 persone che capiscono cosa significa bere bene</div>
+                    </div>
+
+                    <div class="exterior-stat">
+                        <div class="exterior-stat-number">€1-10</div>
+                        <div class="exterior-stat-text">Prezzo onesto per cose vere</div>
+                    </div>
+
+                    <p style="margin-top: 2rem; font-style: italic; color: var(--accent-light);">Vieni stasera. Se non capisci perché tornerai sempre, non è colpa nostra.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- URGENCY SECTION -->
+    <section class="urgency">
+        <div class="urgency-content">
+            <h2>⏰ Non Siamo Sempre Vuoti</h2>
+            <p>Dalle 18 alle 20 siamo pieni — è la fascia dell'aperitivo vero, e i genovesi lo sanno. Se vuoi un tavolo, arriva presto o chiamaci prima: +39 347 182 7933. Non è un "vi consigliamo", è esperienza.</p>
+        </div>
+    </section>
+
+    <!-- LOCATION SECTION -->
+    <section class="location section" id="location">
+        <div class="container">
+            <h2 class="section-title">Trovaci a <span class="highlight">Genova</span></h2>
+            
+            <div class="location-wrapper">
+                <div class="location-info">
+                    <h3>Bar Mini Mixing</h3>
+                    <div class="location-details">
+                        <strong>Siamo Qui</strong>
+                        <p>Via Antonio Cecchi, 2r<br>16129 Genova, Italia</p>
+                    </div>
+                    <p>Nel cuore di Genova, facile da trovare a piedi o in auto. Una volta che conosci il cammino, torni sempre. E se non lo conosci ancora, oggi è il giorno giusto per scoprirlo.</p>
+                    <a href="https://www.google.com/maps/search/Via+Antonio+Cecchi+2r+Genova" target="_blank" class="btn btn-primary">Apri su Mappe</a>
+                </div>
+
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2833.0842384848237!2d8.935!3d44.410!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12d343b8c9d7d7d7%3A0x1234567890ab!2sVia%20Antonio%20Cecchi%202r%2C%2016129%20Genova%20GE%2C%20Italia!5e0!3m2!1sit!2sit!4v1234567890" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Contattaci <span class="highlight">Subito</span></h2>
+            <p class="section-subtitle">Non aspettare — scrivi ora e prenota il tuo tavolo prima che finiscono</p>
+
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <h3>Chiama Diretto</h3>
+                    <p>+39 347 182 7933</p>
+                    <a href="tel:+393471827933" class="btn btn-primary">Chiama Ora</a>
+                </div>
+
+                <div class="contact-card">
+                    <h3>WhatsApp (Veloce)</h3>
+                    <p>Mandaci un messaggio — rispondiamo subito</p>
+                    <a href="https://wa.me/393471827933" target="_blank" class="btn btn-primary">Scrivi</a>
+                </div>
+
+                <div class="contact-card">
+                    <h3>Seguici su Facebook</h3>
+                    <p>Foto, aggiornamenti, e quello che succede qui</p>
+                    <a href="https://www.facebook.com/minimixing/" target="_blank" class="btn btn-primary">Profilo</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="faq section">
+        <div class="container">
+            <h2 class="section-title">Domande <span class="highlight">Frequenti</span></h2>
+            <p class="section-subtitle">Risposte rapide a quello che ti serve sapere</p>
+
+            <div class="faq-container">
+                <div class="faq-item active">
+                    <div class="faq-question">
+                        <h4>L'aperitivo è incluso?</h4>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Sì, 100%! Ogni drink viene con un piatto generoso di aperitivo: bruschette, sandwich, olive, formaggi e stuzzichini. Non sono bocconcini — è cibo vero e saziante.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Serve la prenotazione?</h4>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Consigliata durante le ore di punta (18–20) e nei weekend. Se vieni di sera, meglio chiamare prima: +39 347 182 7933 oppure scrivici su WhatsApp. I clienti che conoscono questo consiglio non si trovano mai senza tavolo.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Fate asporto o consegna?</h4>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Sì, facciamo asporto di drink e stuzzichini. Chiama per ordinare. Ma ti diciamo la verità: il valore vero è stare qui, seduto, con quella sensazione di stare al posto giusto.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Quali sono gli orari?</h4>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Contattaci al +39 347 182 7933 per gli orari esatti. Siamo aperti per l'aperitivo e la sera. Prima di venire, una telefonata non fa mai male — e scopri anche le novità del giorno!
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h4>Qual è la fascia di prezzo?</h4>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        €1–10 per drink, aperitivo incluso. Crediamo che la qualità non debba costare una fortuna. Non ci sono sorprese, non ci sono rincari nascosti. Solo prezzi giusti per una cosa giusta.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Bar Mini Mixing</h4>
+                <p>Non è una catena, non è un esperimento — è il bar dove torni sempre. Dove i genovesi conoscono tua faccia, e i turisti scoprono cosa significa aperitivo vero.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Trovaci a Genova</h4>
+                <p>Via Antonio Cecchi, 2r<br>16129 Genova, Italia<br>
+                <a href="tel:+393471827933">+39 347 182 7933</a></p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Seguici</h4>
+                <ul class="footer-links">
+                    <li><a href="https://www.facebook.com/minimixing/" target="_blank">→ Facebook</a></li>
+                    <li><a href="https://wa.me/393471827933" target="_blank">→ WhatsApp</a></li>
+                    <li><a href="tel:+393471827933">→ Telefono</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-divider">
+            <div class="footer-bottom">
+                <p>&copy; 2025 Bar Mini Mixing. Fatto con 🧡 dai genovesi, per chi sa che un aperitivo vero non si dimentica.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FLOATING WHATSAPP BUTTON -->
+    <a class="floating-whatsapp" href="https://wa.me/393471827933" target="_blank" rel="noopener noreferrer" aria-label="Contatta Bar Mini Mixing su WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M20.52 3.48A11.78 11.78 0 0 0 12.06 0C5.47 0 .11 5.36.11 11.95c0 2.1.55 4.16 1.59 5.97L0 24l6.26-1.65a11.86 11.86 0 0 0 5.79 1.48h.01c6.58 0 11.95-5.36 11.95-11.95 0-3.19-1.24-6.19-3.49-8.4zm-8.46 18.3h-.01a9.83 9.83 0 0 1-5-1.37l-.36-.21-3.71.98.99-3.62-.23-.37a9.79 9.79 0 0 1-1.5-5.24c0-5.43 4.42-9.85 9.86-9.85 2.63 0 5.1 1.02 6.95 2.89a9.75 9.75 0 0 1 2.88 6.95c0 5.44-4.42 9.86-9.87 9.86zm5.41-7.39c-.3-.15-1.78-.88-2.06-.98-.28-.1-.48-.15-.68.15-.2.3-.78.98-.96 1.18-.18.2-.35.22-.65.08-.3-.15-1.26-.46-2.39-1.47a8.94 8.94 0 0 1-1.66-2.06c-.18-.3-.02-.46.13-.61.13-.13.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.08-.15-.68-1.64-.94-2.25-.25-.59-.5-.5-.68-.51l-.58-.01c-.2 0-.53.08-.8.38-.28.3-1.06 1.03-1.06 2.52 0 1.48 1.08 2.91 1.23 3.11.15.2 2.12 3.24 5.14 4.54.72.31 1.28.5 1.72.64.72.23 1.37.2 1.89.12.58-.09 1.78-.73 2.03-1.43.25-.7.25-1.3.18-1.43-.08-.13-.28-.2-.58-.35z"/>
+        </svg>
+    </a>
+
+    <script>
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                
+                document.querySelectorAll('.faq-item.active').forEach(item => {
+                    if (item !== faqItem) {
+                        item.classList.remove('active');
+                    }
+                });
+                
+                faqItem.classList.toggle('active');
+            });
+        });
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    const element = document.querySelector(href);
+                    const offset = 80;
+                    const elementPosition = element.offsetTop - offset;
+                    window.scrollTo({
+                        top: elementPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = getComputedStyle(entry.target).animation || 'fadeInUp 0.8s ease forwards';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.exp-card, .menu-card, .review-card, .contact-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Hide nav on scroll down, show on scroll up
+        let lastScrollTop = 0;
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > 100) {
+                if (scrollTop > lastScrollTop) {
+                    nav.style.transform = 'translateY(-100%)';
+                } else {
+                    nav.style.transform = 'translateY(0)';
+                }
+            }
+            lastScrollTop = scrollTop;
+        }, false);
+
+        nav.style.transition = 'transform 0.3s ease';
+    </script>
+</body>
+</html>
