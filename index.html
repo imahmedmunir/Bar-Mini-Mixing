@@ -620,7 +620,11 @@
         @media (max-width: 768px) {
             .exterior-wrapper {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: 0;
+            }
+
+            .exterior-image {
+                border-radius: 0;
             }
 
             .gallery-grid {
@@ -809,16 +813,6 @@
             width: 100%;
             height: 100%;
             border: none;
-        }
-
-        @media (max-width: 768px) {
-            .location-wrapper {
-                grid-template-columns: 1fr;
-            }
-
-            .map-container {
-                height: 320px;
-            }
         }
 
         /* ===== CONTACT SECTION ===== */
@@ -1189,6 +1183,20 @@
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
+            /* FULL-WIDTH SECTIONS */
+            .container {
+                max-width: 100%;
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+                margin: 0;
+                width: 100%;
+            }
+
+            /* NAVIGATION */
             nav {
                 padding: 0.8rem 1.5rem;
             }
@@ -1205,10 +1213,7 @@
                 display: none;
             }
 
-            .section {
-                padding: 4rem 1rem;
-            }
-
+            /* HERO */
             .hero {
                 margin-top: 50px;
                 min-height: auto;
@@ -1224,28 +1229,94 @@
                 justify-content: center;
             }
 
+            /* TYPOGRAPHY */
             .section-title {
                 font-size: 2rem;
             }
 
+            /* GRIDS */
             .menu-grid,
             .reviews-grid,
             .experience-grid,
-            .contact-grid {
+            .contact-grid,
+            .gallery-grid {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
 
+            /* URGENCY - FULL BLEED */
             .urgency {
-                margin: 3rem 1rem;
-                padding: 2.5rem 1.5rem;
+                margin: 0;
+                padding: 3rem 1rem;
+                width: 100%;
+                border-radius: 0;
             }
 
             .urgency h2 {
                 font-size: 1.8rem;
             }
 
+            /* LOCATION - FULL BLEED */
             .location-wrapper {
-                gap: 2rem;
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                margin: 0;
+                width: 100%;
+            }
+
+            .map-container {
+                border-radius: 0;
+                height: 300px;
+                width: 100%;
+                margin: 0;
+            }
+
+            .location-details {
+                border-radius: 8px;
+            }
+
+            /* EXTERIOR/TRUST - FULL BLEED IMAGE */
+            .exterior {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+            }
+
+            .exterior-wrapper {
+                grid-template-columns: 1fr;
+                gap: 0;
+                margin: 0;
+                width: 100%;
+            }
+
+            .exterior-image {
+                border-radius: 0;
+                box-shadow: none;
+                width: 100%;
+                order: -1;
+            }
+
+            .exterior-image img {
+                width: 100%;
+                height: auto;
+            }
+
+            .exterior-content {
+                padding: 3rem 1rem;
+            }
+
+            .exterior-content h3 {
+                font-size: 1.5rem;
+            }
+
+            .exterior-content p {
+                font-size: 0.95rem;
+            }
+
+            /* GALLERY OVERLAY TEXT */
+            .gallery-overlay p {
+                font-size: 1rem;
+                padding: 0 1rem;
             }
         }
     </style>
